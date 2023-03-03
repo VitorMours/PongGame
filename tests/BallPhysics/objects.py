@@ -1,5 +1,5 @@
 import pygame
-import random
+import math
 class Ball(pygame.sprite.Sprite):
     def __init__(self, surface, position):
         super().__init__()
@@ -20,16 +20,11 @@ class Ball(pygame.sprite.Sprite):
         
         
         
-    def collisions(self,):
-        if  self.x >= 0 or self.x <= 720 and  self.y >= 0 or self.y <= 480:
+    def collisions(self,borders):
+        if pygame.Rect.colliderect(self.hitbox, borders):
+            self.x_vel *= -1
             self.x += self.x_vel
-            self.y += self.y_vel  
-        else:    
-            
-            if self.x < 0 or self.x > 720:
-                self.x_vel *= -1
-            elif self.y < 0 or self.y > 480:
-                self.y_vel *= -1
-            else:
-                pass
-        
+            self.y_vel *= -1
+        else:
+            self.x += self.x_vel
+            self.y += self.y_vel   
