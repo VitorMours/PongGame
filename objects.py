@@ -9,20 +9,25 @@ class Player(pygame.sprite.Sprite):
         
         self.color = color
         self.surface = surface
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         pygame.draw.rect(self.surface,self.color,
                          (self.width, self.heigth, self.x, self.y))
-
         
     def move(self, key):
         if key[pygame.K_w]:
-            self.y -= 10  
-        
+            self.heigth -= 3  
         elif key[pygame.K_s]:
-            self.y += 10
+            self.heigth += 3
+        
+    def draw(self):
+        pygame.draw.rect(self.surface,self.color, (self.width, self.heigth, self.x, self.y))    
+
+
+
+        
         
 class Ball(pygame.sprite.Sprite):
     def __init__(self, size, color):
-        pgame.sprite.Sprite.__init__(self)
+        syper().__init__()
         self.size = (10, 10)    
-        self.color = color
+        self.color = WHITE
